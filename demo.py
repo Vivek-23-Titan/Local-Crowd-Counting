@@ -98,7 +98,7 @@ def test(file_list, model_path):
         elif 'DM' in model_net:
             pred_value = np.sum(pred_map.cpu().data.numpy()[0, 0, :, :]) / cfg.LOG_PARA 
         print("count is:", pred_value)
-        rounded_value = round(pre_value)
+        rounded_value = round(pred_value)
         Dict1[rounded_value] = Dict1.get(rounded_value, 0) + 1
         
         
