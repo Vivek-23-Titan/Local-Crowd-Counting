@@ -128,8 +128,10 @@ def test(file_list, model_path):
         img_cv = cv2.imread(imgname)
         cv2.putText(img_cv, text, (10,30), cv2.FONT_HERSHEY_PLAIN, 2.0, (0,255,255), 2)
         cv2.imwrite(os.path.join(save_dir, filename.split('.')[0] + '_predcount_' + str(int(pred_value + 0.5)) + '.jpg'), img_cv)
+        
+        if index%100 == 0:
+            print(Dict1)
     print(Dict1)
-            
             
 if __name__ == '__main__':
     
