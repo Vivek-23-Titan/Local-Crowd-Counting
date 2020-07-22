@@ -71,6 +71,7 @@ def test(file_list, model_path):
     net.cuda()
     net.eval()
 
+    Dict = {}
     index = 0
     MAE = []
     MSE = []
@@ -97,6 +98,8 @@ def test(file_list, model_path):
         elif 'DM' in model_net:
             pred_value = np.sum(pred_map.cpu().data.numpy()[0, 0, :, :]) / cfg.LOG_PARA 
         print("count is:", pred_value)
+        rounded_value = round(pre_value)
+        d[rounded_value] = d.get(rounded_value, 0) + 1
         
         
         ''' pred counting map '''
@@ -125,6 +128,7 @@ def test(file_list, model_path):
         img_cv = cv2.imread(imgname)
         cv2.putText(img_cv, text, (10,30), cv2.FONT_HERSHEY_PLAIN, 2.0, (0,255,255), 2)
         cv2.imwrite(os.path.join(save_dir, filename.split('.')[0] + '_predcount_' + str(int(pred_value + 0.5)) + '.jpg'), img_cv)
+    print(Dict)
             
             
 if __name__ == '__main__':
